@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
-
+const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 // @desc Register a new user
@@ -39,6 +39,7 @@ const registerUser = asyncHandler(async (request, response) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      token: generateToken(user._id),
     })
   } else {
     response.status(400)
@@ -59,6 +60,7 @@ const loginUser = asyncHandler(async (request, response) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      token: generateToken(user._id),
     })
   } else {
     response.status(401)
@@ -66,7 +68,26 @@ const loginUser = asyncHandler(async (request, response) => {
   }
 })
 
+// @desc Get current user
+// @route /api/users/me
+// @access Private
+const getMe = asyncHandler(async (request, response) => {
+  response.status(200).json({
+    id: request.user._id,
+    email: request.user.email,
+    name: request.user.name,
+  })
+})
+
+// Generate token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  })
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  getMe,
 }
