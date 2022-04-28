@@ -3,6 +3,10 @@ const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT || 5000
 const errorHandler = require('./middleware/errorMiddleware')
+const connectDB = require('./config/db')
+
+// Connect to database
+connectDB()
 
 // Body Parser
 app.use(express.json())
