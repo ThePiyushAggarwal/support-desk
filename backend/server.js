@@ -4,6 +4,9 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000
 const errorHandler = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
+const cors = require('cors')
+
+app.use(cors())
 
 // Connect to database
 connectDB()
