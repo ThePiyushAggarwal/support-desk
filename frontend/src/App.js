@@ -4,10 +4,10 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import NewTicket from './pages/NewTicket'
+import Tickets from './pages/Tickets'
 import PrivateRoute from './components/PrivateRoute'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Tickets from './pages/Tickets'
 
 function App() {
   return (
