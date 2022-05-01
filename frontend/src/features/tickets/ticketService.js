@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8000/api/tickets'
+const API_URL = 'http://localhost:8000/api/tickets/'
 
 // Create a ticket
 const createTicket = async (ticketData, token) => {
@@ -25,4 +25,15 @@ const getTickets = async (token) => {
   return response.data
 }
 
-export const ticketService = { createTicket, getTickets }
+// Get single ticket
+const getTicket = async (ticketId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  const response = await axios.get(API_URL + ticketId, config)
+  return response.data
+}
+
+export const ticketService = { createTicket, getTickets, getTicket }

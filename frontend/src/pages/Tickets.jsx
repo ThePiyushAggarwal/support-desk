@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
 import TicketItem from '../components/TicketItem'
+import Ticket from './Ticket'
 
 function Tickets() {
   const { tickets, isError, message, isLoading, isSuccess } = useSelector(
