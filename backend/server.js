@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (_, response) => {
     response.sendFile(
       // path.join(__dirname, '../', 'frontend', 'build', 'index.html')
-      path.join(__dirname, '../frontend/build')
+      path.join(__dirname, '../frontend/build/index.html')
     )
   })
 } else {
